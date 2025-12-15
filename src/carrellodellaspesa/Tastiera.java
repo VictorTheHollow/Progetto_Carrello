@@ -18,6 +18,12 @@ public class Tastiera {
     public Tastiera() {
         scanner = new Scanner(System.in);
     }
+    public int inputInteroSeguito(String msg, int vMax, int vMin) {
+        System.out.printf(msg);
+        int n = scanner.nextInt();
+        if (n > vMax || n < vMin) throw new RuntimeException("Valori non accettabili, il valore deve essere compreso tra "+vMin+" e "+vMax);
+        return n;
+    }
     public int inputIntero(String msg, int vMax, int vMin) {
         System.out.println(msg);
         int n = scanner.nextInt();
@@ -30,8 +36,15 @@ public class Tastiera {
         if (n > vMax || n < vMin) throw new RuntimeException("Valori non accettabili, il valore deve essere compreso tra "+vMin+" e "+vMax);
         return n;
     }
-    public String inputStringa(String msg, int vMax, int vMin) {
+    public String inputStringaSeguito(String msg) {
+        System.out.printf(msg);
+        scanner.nextLine();
+        riga = scanner.nextLine();
+        return riga;        
+    }
+    public String inputStringa(String msg) {
         System.out.println(msg);
+        scanner.nextLine();
         riga = scanner.nextLine();
         return riga;        
     }

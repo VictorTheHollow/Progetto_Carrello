@@ -13,6 +13,7 @@ public class Menu {
     private int scelta;
     
     public Menu(String[] v) {
+        opzioni = new String[v.length];
         for (int i = 0; i < v.length; i++) {
             opzioni[i]=v[i];
         }

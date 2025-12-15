@@ -64,6 +64,7 @@ public class MainApp {
 
     private static void menu(Carrello carrello, VettoreDinamico magazzino, VettoreDinamico c) throws InterruptedException {
         boolean rimosso = false;
+        Tastiera tastiera = new Tastiera();
         Scanner input = new Scanner(System.in);
         int scelta = 0;
         int quantita;
@@ -74,23 +75,15 @@ public class MainApp {
             System.out.println("2. Visualizza il tuo carrello");
             System.out.println("3. Elimina un prodotto");
             System.out.println("4. Crea l'ordine");
-            System.out.printf("Scelta: ");
             do{
-                scelta = input.nextInt();
+                scelta = tastiera.inputInteroSeguito("Scelta: ", 4, 1);
             }while(scelta < 1 || scelta > 4);
             System.out.println("");
             switch(scelta){
                 case 1:
-                    System.out.println("Inserire il codice del prodotto");
-                    input.nextLine();
-                    codice = input.nextLine();
+                    codice = tastiera.inputStringa("Inserire il codice del prodotto" );
                     System.out.println("");
-                    System.out.println("Inserirne la quantita'");
-                    while (!input.hasNextInt()) {
-                    System.out.println("Quantità non valida, riprova:");
-                    input.next();
-                    }
-                    quantita = input.nextInt();
+                    quantita = tastiera.inputIntero("Inserirne la quantita'", 900, 1);
 
                     if (quantita <= 0) {
                         System.out.println("La quantità deve essere maggiore di zero.");
@@ -122,6 +115,7 @@ public class MainApp {
 
                     if (!trovato) {
                         System.out.println("Prodotto non trovato nel magazzino.");
+                        Thread.sleep(2000);
                     }
                     break;
                 case 2:
@@ -145,9 +139,7 @@ public class MainApp {
                     }
                     System.out.println("+------------+---------------------------------+-----------+--------+");
                     if(c.lunghezza() == 0) System.out.println("Non ci sono prodotti");
-                    System.out.printf("%s","Inserire il codice del prodotto da eliminare: ");
-                    input.nextLine();
-                    codice = input.nextLine();
+                    codice = tastiera.inputStringaSeguito("Inserire il codice del prodotto da eliminare: ");
                     System.out.print("Caricamento");
                     for (int i = 0; i < 3; i++) {
                         Thread.sleep(500);

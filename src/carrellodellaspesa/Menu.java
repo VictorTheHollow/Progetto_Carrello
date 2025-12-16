@@ -20,7 +20,7 @@ public class Menu {
     }
     public void visualizza() {
         for (int i = 0; i < opzioni.length; i++) {
-            System.out.println(opzioni[i]);
+            System.out.printf(opzioni[i]);
         }
     }
     public void inputScelta(String s) {

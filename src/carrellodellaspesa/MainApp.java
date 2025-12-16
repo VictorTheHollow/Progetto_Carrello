@@ -65,19 +65,22 @@ public class MainApp {
     private static void menu(Carrello carrello, VettoreDinamico magazzino, VettoreDinamico c) throws InterruptedException {
         boolean rimosso = false;
         Tastiera tastiera = new Tastiera();
-        Scanner input = new Scanner(System.in);
+        String[] opzioni = new String[] {
+            "\n--------------------\n",
+            "1. Inserisci un prodotto\n",
+            "2. Visualizza il tuo carrello\n",
+            "3. Elimina un prodotto\n",
+            "4. Crea l'ordine\n"
+        };
+        Menu menu = new Menu(opzioni);
         int scelta = 0;
         int quantita;
         String codice;
         do{
-            System.out.println("\n--------------------\n");
-            System.out.println("1. Inserisci un prodotto");
-            System.out.println("2. Visualizza il tuo carrello");
-            System.out.println("3. Elimina un prodotto");
-            System.out.println("4. Crea l'ordine");
+            menu.visualizza();
             do{
-                scelta = tastiera.inputInteroSeguito("Scelta: ", 4, 1);
-            }while(scelta < 1 || scelta > 4);
+                scelta = tastiera.inputInteroSeguito("Scelta: ", 4, 0);
+            }while(scelta < 0 || scelta > 4);
             System.out.println("");
             switch(scelta){
                 case 1:

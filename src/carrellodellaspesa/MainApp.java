@@ -18,6 +18,7 @@ public class MainApp {
 
     public static void main(String[] args) throws Exception {
         VettoreDinamico c = null;
+        Configurazione config = new Configurazione();
         Carrello carrello = new Carrello();
         VettoreDinamico magazzino = new VettoreDinamico();
         creaFileBinario(magazzino);
@@ -35,7 +36,7 @@ public class MainApp {
         for (int k = 0; k < c.lunghezza(); k++) {
             System.out.println("Elemento " + k + " " + c.get(k).getCodice());
         } */
-        menu(carrello, magazzino, c);
+        menu(carrello, magazzino, c, config);
     }
 
     private static void creaFileBinario(VettoreDinamico v){
@@ -62,8 +63,9 @@ public class MainApp {
         }
     }
 
-    private static void menu(Carrello carrello, VettoreDinamico magazzino, VettoreDinamico c) throws InterruptedException {
+    private static void menu(Carrello carrello, VettoreDinamico magazzino, VettoreDinamico c, Configurazione config) throws InterruptedException, Exception {
         boolean rimosso = false;
+        Ordine ordine;
         Tastiera tastiera = new Tastiera();
         String[] opzioni = new String[] {
             "\n--------------------\n",
@@ -155,9 +157,13 @@ public class MainApp {
                     } else {
                         System.out.println("Prodotto trovato!");
                     }
+                case 4:
+                    ordine = new Ordine(carrello, config);
+                    ordine.salvaSuFile();
             }
         }while(scelta != 4);
         
     }
+    
     
 }

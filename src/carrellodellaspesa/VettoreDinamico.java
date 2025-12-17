@@ -76,6 +76,13 @@ public class VettoreDinamico implements Serializable{
         v[numero - 1] = null;
         numero--;
     }
+    
+    public void svuota() {
+        for (int i = 0; i < numero; i++) {
+            v[i] = null;
+        }
+        numero = 0;
+    }
 }
 
 

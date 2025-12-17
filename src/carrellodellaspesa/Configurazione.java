@@ -18,25 +18,32 @@ import java.io.Serializable;
  * @author Utente
  */
 public final class Configurazione implements Serializable{
-    private double percentualeIVA;   ;
+    private double percentualeIVA;
     private int NumeroUltimoOrdine;
     private final String nomeFile = "configurazione.txt";
     public Configurazione() throws FileNotFoundException, IOException, Exception{
         File file = new File(nomeFile);
-        
-        if(!file.exists()){
-            percentualeIVA = 22;
+
+        if (!file.exists()) {
+            percentualeIVA = 22.0;
             NumeroUltimoOrdine = 0;
-            salvaConfigurazione();    
-        } else {
-            try(BufferedReader br = new BufferedReader(new FileReader(file))){
-                String l1 = br.readLine();
-                NumeroUltimoOrdine = Integer.parseInt(l1);
-                String l2 = br.readLine();
-                percentualeIVA = Double.parseDouble(l2);
-            } catch(Exception e) {
-                throw new RuntimeException("Errore in lettura!!");
-            }
+            salvaConfigurazione();
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+
+            String r1 = br.readLine();
+            String r2 = br.readLine();
+
+            String v1 = r1.split(":")[1].trim();
+            String v2 = r2.split(":")[1].trim();
+
+            NumeroUltimoOrdine = (int) Double.parseDouble(v2);
+            percentualeIVA = Double.parseDouble(v1);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Errore in lettura configurazione", e);
         }
     }
     public void salvaConfigurazione() throws IOException, Exception {

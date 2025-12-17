@@ -7,8 +7,6 @@ package carrellodellaspesa;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
-import java.util.Scanner;
-
 
 /**
  *
@@ -72,7 +70,8 @@ public class MainApp {
             "1. Inserisci un prodotto\n",
             "2. Visualizza il tuo carrello\n",
             "3. Elimina un prodotto\n",
-            "4. Crea l'ordine\n"
+            "4. Crea l'ordine\n",
+            "0. Esci dal programma\n"
         };
         Menu menu = new Menu(opzioni);
         int scelta = 0;
@@ -151,7 +150,7 @@ public class MainApp {
                         System.out.print(".");
                     }
                     System.out.println("");
-                    rimosso = carrello.rimuoviProdotto(codice);
+                    rimosso = carrello.rimuoviProdotto(codice, magazzino);
                     if(!rimosso){
                         System.out.println("Prodotto non trovato");
                     } else {
@@ -160,8 +159,11 @@ public class MainApp {
                 case 4:
                     ordine = new Ordine(carrello, config);
                     ordine.salvaSuFile();
+                    config.incrementoNumeroOrdine();
+                    config.salvaConfigurazione();
+                    c.svuota();
             }
-        }while(scelta != 4);
+        }while(scelta != 0);
         
     }
     

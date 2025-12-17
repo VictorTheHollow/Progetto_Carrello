@@ -29,10 +29,11 @@ public class Carrello implements Serializable{
         }
     }
     
-    public boolean rimuoviProdotto(String codice){
+    public boolean rimuoviProdotto(String codice, VettoreDinamico magazzino){
         boolean trovato = false;
         for (int i = 0; i < prodotti.lunghezza(); i++) {
             if(prodotti.get(i).getCodice().equalsIgnoreCase(codice)){
+                magazzino.get(i).setQuantita(magazzino.get(i).getQuantita() + prodotti.get(i).getQuantita());
                 prodotti.elimina(i);
                 trovato = true;
             }

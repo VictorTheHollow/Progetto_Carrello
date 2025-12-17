@@ -37,7 +37,7 @@ public class Ordine {
         } 
         return imponibile;
     }
-        public void salvaSuFile() throws Exception {
+    public void salvaSuFile() throws Exception {
         String nome = numero + ".txt";
 
         try (PrintWriter pw = new PrintWriter(nome)) {

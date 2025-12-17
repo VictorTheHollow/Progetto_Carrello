@@ -42,7 +42,6 @@ public final class Configurazione implements Serializable{
             percentualeIVA = Double.parseDouble(v1);
 
         } catch (Exception e) {
-            e.printStackTrace();
             throw new RuntimeException("Errore in lettura configurazione", e);
         }
     }
@@ -53,6 +52,10 @@ public final class Configurazione implements Serializable{
         } catch(Exception e) {
             throw new Exception("Errore in lettura");
         }
+    }
+
+    public void setNumeroUltimoOrdine(int NumeroUltimoOrdine) {
+        this.NumeroUltimoOrdine = NumeroUltimoOrdine;
     }
 
     public void incrementoNumeroOrdine(){

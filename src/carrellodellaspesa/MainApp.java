@@ -17,8 +17,8 @@ public class MainApp {
     public static void main(String[] args) throws Exception {
         VettoreDinamico c = null;
         Configurazione config = new Configurazione();
-        Carrello carrello = new Carrello();
-        VettoreDinamico magazzino = new VettoreDinamico();
+        Carrello carrello = new Carrello(); 
+        VettoreDinamico magazzino = new VettoreDinamico(); //Contiene i prodotti nel magazzino
         creaFileBinario(magazzino);
      /* String codice = "P001";
         int quantita = 1;
@@ -156,12 +156,30 @@ public class MainApp {
                     } else {
                         System.out.println("Prodotto trovato!");
                     }
+                    break;
                 case 4:
-                    ordine = new Ordine(carrello, config);
-                    ordine.salvaSuFile();
-                    config.incrementoNumeroOrdine();
-                    config.salvaConfigurazione();
-                    c.svuota();
+                        if (carrello.getProdotti().lunghezza() == 0) {
+                            System.out.println("Il carrello e' vuoto. Non e' possibile creare un ordine.");
+                            break;
+                        }
+
+                        ordine = new Ordine(carrello, config);
+
+                        try {
+                            ordine.salvaSuFile();
+                        } catch (Exception e) {
+                            System.out.println("Errore durante il salvataggio dell'ordine: ");
+                        }
+                        System.out.printf("L'ordine N^" + ordine.getNumero() + " e' stato salvato\n" );
+
+                        carrello.getProdotti().svuota();
+                        c = carrello.getProdotti();
+
+                        config.setNumeroUltimoOrdine(ordine.getNumero());
+                        config.salvaConfigurazione();
+                        System.out.println("Il carrello e' stato svuotato.");
+                        Thread.sleep(2000);
+                        break;
             }
         }while(scelta != 0);
         

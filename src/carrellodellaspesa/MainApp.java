@@ -44,16 +44,37 @@ public class MainApp {
             Prodotto p1 = new Prodotto("P001", "Pasta Fusilli 500g", 120, 0.89);
             Prodotto p2 = new Prodotto("P002", "Riso Arborio 1kg", 80, 1.90);
             Prodotto p3 = new Prodotto("P003", "Passata di Pomodoro 700g", 150, 1.10);
+            Prodotto p4 = new Prodotto("P004", "Olio Extra Vergine", 60, 4.50);
+            Prodotto p5= new Prodotto("P005", "Farina 00 1kg", 100, 1.20);
+            Prodotto p6 = new Prodotto("P006", "Zuccero Semolato 1kg", 90, 0.99);
+            Prodotto p7 = new Prodotto("P007", "Latte UHT 1L", 200, 1.05);
+            Prodotto p8 = new Prodotto("P008", "Uova Medie 12pz", 180, 2.50);
+            Prodotto p9 = new Prodotto("P009", "Burro 250g", 75, 2.30);
+            Prodotto p10 = new Prodotto("P010", "Caffe' Macinato 250g", 50, 3.10);            
 
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("prodotti.dat"));
             oos.writeObject(p1);
             oos.writeObject(p2);
             oos.writeObject(p3);
+            oos.writeObject(p4);
+            oos.writeObject(p5);
+            oos.writeObject(p6);
+            oos.writeObject(p7);
+            oos.writeObject(p8);
+            oos.writeObject(p9);
+            oos.writeObject(p10);
             oos.close();
             
             v.aggiungi(p1);
             v.aggiungi(p2);
             v.aggiungi(p3);
+            v.aggiungi(p4);
+            v.aggiungi(p5);
+            v.aggiungi(p6);
+            v.aggiungi(p7);
+            v.aggiungi(p8);
+            v.aggiungi(p9);
+            v.aggiungi(p10);
 
             System.out.println("File prodotti.dat creato!");
         } catch (Exception e) {
@@ -71,6 +92,7 @@ public class MainApp {
             "2. Visualizza il tuo carrello\n",
             "3. Elimina un prodotto\n",
             "4. Crea l'ordine\n",
+            "5. Visualizza rifornisci il magazzino\n",
             "0. Esci dal programma\n"
         };
         Menu menu = new Menu(opzioni);
@@ -80,11 +102,18 @@ public class MainApp {
         do{
             menu.visualizza();
             do{
-                scelta = tastiera.inputInteroSeguito("Scelta: ", 4, 0);
-            }while(scelta < 0 || scelta > 4);
+                scelta = tastiera.inputInteroSeguito("Scelta: ", 5, 0);
+            }while(scelta < 0 || scelta > 5);
             System.out.println("");
             switch(scelta){
-                case 1:
+                case 1:                   
+                    System.out.println("+------------+---------------------------------+-----------+--------+");
+                    System.out.printf("| %-10s | %-31s | %-5s | %-5s |\n", "Codice", "Descrizione", "Quantita'", "Prezzo");
+                    for (int k = 0; k < magazzino.lunghezza(); k++) {
+                        System.out.println("+------------+---------------------------------+-----------+--------+");
+                        System.out.printf("| %-10s | %-31s | %-9s | %-5s  |\n", magazzino.get(k).getCodice(), magazzino.get(k).getDescrizione(),magazzino.get(k).getQuantita(), magazzino.get(k).getPrezzo());   
+                    }
+                    System.out.println("+------------+---------------------------------+-----------+--------+");
                     codice = tastiera.inputStringa("Inserire il codice del prodotto" );
                     System.out.println("");
                     quantita = tastiera.inputIntero("Inserirne la quantita'", 900, 1);
@@ -158,28 +187,34 @@ public class MainApp {
                     }
                     break;
                 case 4:
-                        if (carrello.getProdotti().lunghezza() == 0) {
-                            System.out.println("Il carrello e' vuoto. Non e' possibile creare un ordine.");
-                            break;
-                        }
-
-                        ordine = new Ordine(carrello, config);
-
-                        try {
-                            ordine.salvaSuFile();
-                        } catch (Exception e) {
-                            System.out.println("Errore durante il salvataggio dell'ordine: ");
-                        }
-                        System.out.printf("L'ordine N^" + ordine.getNumero() + " e' stato salvato\n" );
-
-                        carrello.getProdotti().svuota();
-                        c = carrello.getProdotti();
-
-                        config.setNumeroUltimoOrdine(ordine.getNumero());
-                        config.salvaConfigurazione();
-                        System.out.println("Il carrello e' stato svuotato.");
-                        Thread.sleep(2000);
+                    if (carrello.getProdotti().lunghezza() == 0) {
+                        System.out.println("Il carrello e' vuoto. Non e' possibile creare un ordine.");
                         break;
+                    }
+
+                    ordine = new Ordine(carrello, config);
+
+                    try {
+                        ordine.salvaSuFile();
+                    } catch (Exception e) {
+                        System.out.println("Errore durante il salvataggio dell'ordine: ");
+                    }
+                    System.out.printf("L'ordine N^" + ordine.getNumero() + " e' stato salvato\n" );
+                    carrello.getProdotti().svuota();
+                    c = carrello.getProdotti();
+
+                    config.setNumeroUltimoOrdine(ordine.getNumero());
+                    config.salvaConfigurazione();                        System.out.println("Il carrello e' stato svuotato.");
+                    Thread.sleep(2000);
+                    break;
+                case 5:
+                    System.out.println("+------------+---------------------------------+-----------+--------+");
+                    System.out.printf("| %-10s | %-31s | %-5s | %-5s |\n", "Codice", "Descrizione", "Quantita'", "Prezzo");
+                    for (int k = 0; k < magazzino.lunghezza(); k++) {
+                        System.out.println("+------------+---------------------------------+-----------+--------+");
+                        System.out.printf("| %-10s | %-31s | %-9s | %-5s  |\n", magazzino.get(k).getCodice(), magazzino.get(k).getDescrizione(),magazzino.get(k).getQuantita(), magazzino.get(k).getPrezzo());   
+                    }
+                    System.out.println("+------------+---------------------------------+-----------+--------+");
             }
         }while(scelta != 0);
         

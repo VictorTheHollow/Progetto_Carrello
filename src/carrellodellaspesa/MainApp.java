@@ -90,7 +90,7 @@ public class MainApp {
             "\n--------------------\n",
             "1. Inserisci un prodotto\n",
             "2. Visualizza il tuo carrello\n",
-            "3. Elimina un prodotto\n",
+            "3. Rimuovi un prodotto\n",
             "4. Crea l'ordine\n",
             "5. Visualizza rifornisci il magazzino\n",
             "0. Esci dal programma\n"

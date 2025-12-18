@@ -47,7 +47,7 @@ public class Ordine {
             pw.println("Prodotti:");
 
             for (int i = 0; i < prodotti.lunghezza(); i++) {
-                pw.println("- " + prodotti.get(i).getDescrizione());
+                pw.println("- " + prodotti.get(i).getDescrizione() + "x" + prodotti.get(i).getQuantita());
             }
             pw.println("Imponibile: " + imponibile);
             pw.println("IVA: " + iva);

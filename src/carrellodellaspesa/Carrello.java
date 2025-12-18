@@ -33,7 +33,11 @@ public class Carrello implements Serializable{
         boolean trovato = false;
         for (int i = 0; i < prodotti.lunghezza(); i++) {
             if(prodotti.get(i).getCodice().equalsIgnoreCase(codice)){
-                magazzino.get(i).setQuantita(magazzino.get(i).getQuantita() + prodotti.get(i).getQuantita());
+                for(int k = 0; k < magazzino.lunghezza(); k++){
+                    if(magazzino.get(k).getCodice().equalsIgnoreCase(codice)){
+                        magazzino.get(k).setQuantita(magazzino.get(k).getQuantita() + prodotti.get(i).getQuantita());
+                    }
+                }
                 prodotti.elimina(i);
                 trovato = true;
             }

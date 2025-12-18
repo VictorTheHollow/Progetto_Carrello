@@ -65,6 +65,7 @@ public class MainApp {
             oos.writeObject(p10);
             oos.close();
             
+            v.svuota();
             v.aggiungi(p1);
             v.aggiungi(p2);
             v.aggiungi(p3);
@@ -75,8 +76,6 @@ public class MainApp {
             v.aggiungi(p8);
             v.aggiungi(p9);
             v.aggiungi(p10);
-
-            System.out.println("File prodotti.dat creato!");
         } catch (Exception e) {
             System.out.println("Errore creazione file");
         }
@@ -98,6 +97,7 @@ public class MainApp {
         Menu menu = new Menu(opzioni);
         int scelta = 0;
         int quantita;
+        String parola;
         String codice;
         do{
             menu.visualizza();
@@ -171,7 +171,10 @@ public class MainApp {
                         System.out.printf("| %-10s | %-31s | %-9s | %-5s  |\n", c.get(k).getCodice(), c.get(k).getDescrizione(),c.get(k).getQuantita(), c.get(k).getPrezzo());   
                     }
                     System.out.println("+------------+---------------------------------+-----------+--------+");
-                    if(c.lunghezza() == 0) System.out.println("Non ci sono prodotti");
+                    if(c.lunghezza() == 0){
+                        System.out.println("Non ci sono prodotti");
+                        break;
+                    }
                     codice = tastiera.inputStringaSeguito("Inserire il codice del prodotto da eliminare: ");
                     System.out.print("Caricamento");
                     for (int i = 0; i < 3; i++) {
@@ -204,7 +207,8 @@ public class MainApp {
                     c = carrello.getProdotti();
 
                     config.setNumeroUltimoOrdine(ordine.getNumero());
-                    config.salvaConfigurazione();                        System.out.println("Il carrello e' stato svuotato.");
+                    config.salvaConfigurazione();                       
+                    System.out.println("Il carrello e' stato svuotato.");
                     Thread.sleep(2000);
                     break;
                 case 5:
@@ -215,6 +219,13 @@ public class MainApp {
                         System.out.printf("| %-10s | %-31s | %-9s | %-5s  |\n", magazzino.get(k).getCodice(), magazzino.get(k).getDescrizione(),magazzino.get(k).getQuantita(), magazzino.get(k).getPrezzo());   
                     }
                     System.out.println("+------------+---------------------------------+-----------+--------+");
+                    parola = tastiera.inputStringaSeguito("Per rifornire scrivi 'Restock': ");
+                    if(parola.equalsIgnoreCase("Restock")){
+                        creaFileBinario(magazzino);
+                        System.out.println("Restock avvenuto con successo!");
+                    } else{
+                        System.out.println("Impossibile effetuare il restock!!");
+                    }
             }
         }while(scelta != 0);
         

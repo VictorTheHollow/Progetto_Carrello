@@ -1,0 +1,7 @@
+ORDINE N° 2
+Data: 18-12-2025
+Prodotti:
+- Pasta Fusilli 500g x12
+Imponibile: 10.68
+IVA: 2.35
+Totale: 13.03

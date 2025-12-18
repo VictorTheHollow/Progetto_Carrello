@@ -26,8 +26,8 @@ public class Ordine {
         data = LocalDate.now().format(format);
         prodotti = carrello.getProdotti();
         imponibile = calcolaImponibile(); 
-        iva = imponibile * config.getPercentualeIVA() / 100.0;
-        totale =  imponibile + iva;
+        iva = Math.round(imponibile * config.getPercentualeIVA()) / 100.0;
+        totale = Math.round((imponibile + iva) * 100) / 100.0;
     }
     public double calcolaImponibile(){
         imponibile = 0;
@@ -47,7 +47,7 @@ public class Ordine {
             pw.println("Prodotti:");
 
             for (int i = 0; i < prodotti.lunghezza(); i++) {
-                pw.println("- " + prodotti.get(i).getDescrizione() + "x" + prodotti.get(i).getQuantita());
+                pw.println("- " + prodotti.get(i).getDescrizione() + " x" + prodotti.get(i).getQuantita());
             }
             pw.println("Imponibile: " + imponibile);
             pw.println("IVA: " + iva);

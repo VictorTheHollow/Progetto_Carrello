@@ -109,8 +109,8 @@ public class MainApp {
                     System.out.println("                =============MAGAZZINO=============");
                     System.out.println("+------------+---------------------------------+-----------+--------+");
                     System.out.printf("| %-10s | %-31s | %-5s | %-5s |\n", "Codice", "Descrizione", "Quantita'", "Prezzo");
+                    System.out.println("+------------+---------------------------------+-----------+--------+");
                     for (int k = 0; k < magazzino.lunghezza(); k++) {
-                        System.out.println("+------------+---------------------------------+-----------+--------+");
                         System.out.printf("| %-10s | %-31s | %-9s | %-5s  |\n", magazzino.get(k).getCodice(), magazzino.get(k).getDescrizione(),magazzino.get(k).getQuantita(), magazzino.get(k).getPrezzo());   
                     }
                     System.out.println("+------------+---------------------------------+-----------+--------+");
@@ -137,18 +137,25 @@ public class MainApp {
                                 carrello.aggiungiProdotto(p);
                                 prodotto.setQuantita(prodotto.getQuantita() - quantita);
                                 System.out.println("Prodotto aggiunto al carrello!");
-                                Thread.sleep(2000);
                             } else {
                                 System.out.println("Quantita' non disponibile in magazzino.");
-                                Thread.sleep(2000);
                             }   
+                            System.out.printf("Loading");
+                            for (int k = 0; k < 3; k++) {
+                                Thread.sleep(500);
+                                System.out.print(".");
+                            }
                             break; 
                         }
                     }
 
                     if (!trovato) {
                         System.out.println("Prodotto non trovato nel magazzino.");
-                        Thread.sleep(2000);
+                        System.out.printf("Loading");
+                        for (int i = 0; i < 3; i++) {
+                            Thread.sleep(500);
+                            System.out.print(".");
+                        }
                     }
                     break;
                 case 2:
@@ -156,8 +163,8 @@ public class MainApp {
                     System.out.println("                =============CARRELLO=============");
                     System.out.println("+------------+---------------------------------+-----------+--------+");
                     System.out.printf("| %-10s | %-31s | %-5s | %-5s |\n", "Codice", "Descrizione", "Quantita'", "Prezzo");
+                    System.out.println("+------------+---------------------------------+-----------+--------+");
                     for (int k = 0; k < c.lunghezza(); k++) {
-                        System.out.println("+------------+---------------------------------+-----------+--------+");
                         System.out.printf("| %-10s | %-31s | %-9s | %-5s  |\n", c.get(k).getCodice(), c.get(k).getDescrizione(),c.get(k).getQuantita(), c.get(k).getPrezzo());   
                     }
                     System.out.println("+------------+---------------------------------+-----------+--------+");
@@ -165,10 +172,11 @@ public class MainApp {
                     break;
                 case 3:
                     c = carrello.getProdotti();
+                    System.out.println("                =============CARRELLO=============");
                     System.out.println("+------------+---------------------------------+-----------+--------+");
                     System.out.printf("| %-10s | %-31s | %-5s | %-5s |\n", "Codice", "Descrizione", "Quantita'", "Prezzo");
+                    System.out.println("+------------+---------------------------------+-----------+--------+");
                     for (int k = 0; k < c.lunghezza(); k++) {
-                        System.out.println("+------------+---------------------------------+-----------+--------+");
                         System.out.printf("| %-10s | %-31s | %-9s | %-5s  |\n", c.get(k).getCodice(), c.get(k).getDescrizione(),c.get(k).getQuantita(), c.get(k).getPrezzo());   
                     }
                     System.out.println("+------------+---------------------------------+-----------+--------+");
@@ -177,7 +185,7 @@ public class MainApp {
                         break;
                     }
                     codice = tastiera.inputStringaSeguito("Inserire il codice del prodotto da eliminare: ");
-                    System.out.printf("Caricamento");
+                    System.out.printf("Loading");
                     for (int i = 0; i < 3; i++) {
                         Thread.sleep(500);
                         System.out.print(".");
@@ -208,16 +216,21 @@ public class MainApp {
                     c = carrello.getProdotti();
 
                     config.setNumeroUltimoOrdine(ordine.getNumero());
-                    config.salvaConfigurazione();                       
+                    config.salvaConfigurazione();
+                    
                     System.out.println("Il carrello e' stato svuotato.");
-                    Thread.sleep(2000);
+                    System.out.printf("Loading");
+                    for (int i = 0; i < 3; i++) {
+                        Thread.sleep(500);
+                        System.out.print(".");
+                    }
                     break;
                 case 5:
                     System.out.println("                =============MAGAZZINO=============");
                     System.out.println("+------------+---------------------------------+-----------+--------+");
                     System.out.printf("| %-10s | %-31s | %-5s | %-5s |\n", "Codice", "Descrizione", "Quantita'", "Prezzo");
+                    System.out.println("+------------+---------------------------------+-----------+--------+");
                     for (int k = 0; k < magazzino.lunghezza(); k++) {
-                        System.out.println("+------------+---------------------------------+-----------+--------+");
                         System.out.printf("| %-10s | %-31s | %-9s | %-5s  |\n", magazzino.get(k).getCodice(), magazzino.get(k).getDescrizione(),magazzino.get(k).getQuantita(), magazzino.get(k).getPrezzo());   
                     }
                     System.out.println("+------------+---------------------------------+-----------+--------+");
@@ -228,6 +241,12 @@ public class MainApp {
                     } else{
                         System.out.println("Impossibile effetuare il restock!!");
                     }
+                    System.out.printf("Loading");
+                    for (int i = 0; i < 3; i++) {
+                        Thread.sleep(500);
+                        System.out.print(".");
+                    }
+                    break;
             }
         }while(scelta != 0);
         System.out.printf("In uscita dal programma");

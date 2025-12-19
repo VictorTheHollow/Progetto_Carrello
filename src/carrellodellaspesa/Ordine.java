@@ -61,6 +61,7 @@ public class Ordine {
             Prodotto p = prodotti.get(i);
             imponibile += p.getPrezzo() * p.getQuantita();
         }
+        imponibile = Math.round(imponibile * 100.0) / 100.0;
         return imponibile;
     }
 

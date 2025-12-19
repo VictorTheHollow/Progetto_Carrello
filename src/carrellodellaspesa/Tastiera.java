@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package carrellodellaspesa;
+import java.util.Scanner;
 
 /**
  * La classe gestisce l'inserimento dei dati da tastiera tramite un oggetto.
@@ -10,8 +11,6 @@ package carrellodellaspesa;
  * con controllo sui valori inseriti.
  * @author Utente
  */
-import java.util.Scanner;
-
 
 public class Tastiera {
     private Scanner scanner;

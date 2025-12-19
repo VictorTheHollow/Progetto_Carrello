@@ -1,9 +1,0 @@
-ORDINE N° 1
-Data: 19-12-2025
-Prodotti:
-- Farina 00 1kg x9
-- Caffe' Macinato 250g x45
-- Uova Medie 12pz x23
-Imponibile: 207.8
-IVA: 45.72
-Totale: 253.52

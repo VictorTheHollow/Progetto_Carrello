@@ -13,30 +13,22 @@ import java.io.ObjectOutputStream;
  * @author Utente
  */
 public class MainApp {
-
+    /**
+     * Funzione main
+     * @param args
+     */
     public static void main(String[] args) throws Exception {
         VettoreDinamico c = null;
         Configurazione config = new Configurazione();
         Carrello carrello = new Carrello(); 
-        VettoreDinamico magazzino = new VettoreDinamico(); //Contiene i prodotti nel magazzino
+        VettoreDinamico magazzino = new VettoreDinamico();
         creaFileBinario(magazzino);
-     /* String codice = "P001";
-        int quantita = 1;
-        for(int i = 0; i < magazzino.lunghezza(); i++){
-            Prodotto prodotto = magazzino.get(i);
-            if(codice.equalsIgnoreCase(prodotto.getCodice())){
-                Prodotto p = new Prodotto(codice, prodotto.getDescrizione(),quantita, prodotto.getPrezzo()); 
-                carrello.aggiungiProdotto(prodotto);
-                prodotto.setQuantita(prodotto.getQuantita() - 1);
-            }
-        }
-        c = carrello.getProdotti();
-        for (int k = 0; k < c.lunghezza(); k++) {
-            System.out.println("Elemento " + k + " " + c.get(k).getCodice());
-        } */
         menu(carrello, magazzino, c, config);
     }
-
+    /**
+     * Funzione per la creazione del file binario prodotti.dat
+     * @param v vettore dinamico che memorizza i prodotti nel file binario
+     */
     private static void creaFileBinario(VettoreDinamico v){
         try {
             File f = new File("prodotti.dat");
@@ -45,7 +37,7 @@ public class MainApp {
             Prodotto p2 = new Prodotto("P002", "Riso Arborio 1kg", 80, 1.90);
             Prodotto p3 = new Prodotto("P003", "Passata di Pomodoro 700g", 150, 1.10);
             Prodotto p4 = new Prodotto("P004", "Olio Extra Vergine", 60, 4.50);
-            Prodotto p5= new Prodotto("P005", "Farina 00 1kg", 100, 1.20);
+            Prodotto p5 = new Prodotto("P005", "Farina 00 1kg", 100, 1.20);
             Prodotto p6 = new Prodotto("P006", "Zuccero Semolato 1kg", 90, 0.99);
             Prodotto p7 = new Prodotto("P007", "Latte UHT 1L", 200, 1.05);
             Prodotto p8 = new Prodotto("P008", "Uova Medie 12pz", 180, 2.50);
@@ -80,7 +72,14 @@ public class MainApp {
             System.out.println("Errore creazione file");
         }
     }
-
+    /**
+     * Funzione che si occupa di svolgere tutti i calcoli,
+     * evitando di caricare eccesivamente il main.
+     * @param carrello rappresenta la classe Carrello
+     * @param magazzino vetttore dinamico che contiene i valori dei prodotti nel file binario
+     * @param c vettore dinamico che contiene il carrello dell'utente
+     * @param config indica la classe configurazione
+     */
     private static void menu(Carrello carrello, VettoreDinamico magazzino, VettoreDinamico c, Configurazione config) throws InterruptedException, Exception {
         boolean rimosso = false;
         Ordine ordine;

@@ -176,7 +176,7 @@ public class MainApp {
                         break;
                     }
                     codice = tastiera.inputStringaSeguito("Inserire il codice del prodotto da eliminare: ");
-                    System.out.print("Caricamento");
+                    System.out.printf("Caricamento");
                     for (int i = 0; i < 3; i++) {
                         Thread.sleep(500);
                         System.out.print(".");
@@ -228,6 +228,11 @@ public class MainApp {
                     }
             }
         }while(scelta != 0);
+        System.out.printf("In uscita dal programma");
+        for (int i = 0; i < 3; i++) {
+            Thread.sleep(500);
+            System.out.print(".");
+        }
         
     }
     

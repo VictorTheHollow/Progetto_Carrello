@@ -1,2 +1,2 @@
 Percentuale IVA: 22.0
-Numero dell'ultimo ordine: 2
+Numero dell'ultimo ordine: 0

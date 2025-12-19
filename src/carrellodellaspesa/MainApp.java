@@ -74,7 +74,7 @@ public class MainApp {
     }
     /**
      * Funzione che si occupa di svolgere tutti i calcoli,
-     * evitando di caricare eccesivamente il main.
+     * evitando di caricare eccesivamente il main
      * @param carrello rappresenta la classe Carrello
      * @param magazzino vetttore dinamico che contiene i valori dei prodotti nel file binario
      * @param c vettore dinamico che contiene il carrello dell'utente
@@ -238,6 +238,4 @@ public class MainApp {
         System.out.println("");
         
     }
-    
-    
 }

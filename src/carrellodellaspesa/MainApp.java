@@ -86,7 +86,7 @@ public class MainApp {
         Ordine ordine;
         Tastiera tastiera = new Tastiera();
         String[] opzioni = new String[] {
-            "\n--------------------\n",
+            "\n***********************************************************************\n",
             "1. Inserisci un prodotto\n",
             "2. Visualizza il tuo carrello\n",
             "3. Rimuovi un prodotto\n",
@@ -106,7 +106,8 @@ public class MainApp {
             }while(scelta < 0 || scelta > 5);
             System.out.println("");
             switch(scelta){
-                case 1:                   
+                case 1:       
+                    System.out.println("                =============MAGAZZINO=============");
                     System.out.println("+------------+---------------------------------+-----------+--------+");
                     System.out.printf("| %-10s | %-31s | %-5s | %-5s |\n", "Codice", "Descrizione", "Quantita'", "Prezzo");
                     for (int k = 0; k < magazzino.lunghezza(); k++) {
@@ -153,6 +154,7 @@ public class MainApp {
                     break;
                 case 2:
                     c = carrello.getProdotti();
+                    System.out.println("                =============CARRELLO=============");
                     System.out.println("+------------+---------------------------------+-----------+--------+");
                     System.out.printf("| %-10s | %-31s | %-5s | %-5s |\n", "Codice", "Descrizione", "Quantita'", "Prezzo");
                     for (int k = 0; k < c.lunghezza(); k++) {
@@ -212,6 +214,7 @@ public class MainApp {
                     Thread.sleep(2000);
                     break;
                 case 5:
+                    System.out.println("                =============MAGAZZINO=============");
                     System.out.println("+------------+---------------------------------+-----------+--------+");
                     System.out.printf("| %-10s | %-31s | %-5s | %-5s |\n", "Codice", "Descrizione", "Quantita'", "Prezzo");
                     for (int k = 0; k < magazzino.lunghezza(); k++) {
@@ -233,6 +236,7 @@ public class MainApp {
             Thread.sleep(500);
             System.out.print(".");
         }
+        System.out.println("");
         
     }
     
